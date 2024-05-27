@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+    <!-- Document Meta
+    ============================================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--IE Compatibility Meta-->
+    <meta name="author" content="zytheme" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Real Estate html5 template">
+    <link href="assets/images/favicon/favicon.png" rel="icon">
+
+    <!-- Fonts
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Stylesheets
+    ============================================= -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/external.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+ 
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Rentify</title>
+</head>
+
+<body>
+    
+
+   
+    <div id="wrapper" class="wrapper clearfix">
+        <header id="navbar-spy" class="header header-1 header-light header-fixed">
+            <nav id="primary-menu" class="navbar navbar-fixed-top">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+                        <a class="logo" href="index.html" style="font-size: 50px;">
+                    Rentify
+				</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
+                     
+                        <!-- Module Signup  -->
+                        <div class="module module-login pull-left">
+                            <a href="/logout" class="btn-popup" data-toggle="modal" >Logout</a>
+                           
+                        </div>
+                        <!-- Module Consultation  -->
+                        <div class="module module-property pull-left">
+                            <a href="{{ url_for('sell') }}" target="_blank" class="btn"><i class="fa fa-plus"></i> Sell property</a>
+                        </div>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+        </header>
+        <!-- map
+============================================ -->
+        <section style="background-color: white;">
+        <h1 align="center" style="font-size: 150px;">Rentify</h1>
+
+            <div align="center">
+                <form method="get" action="{{ url_for('index') }}">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" value="{{ location or '' }}">
+            
+                    <label for="min_price">Min Price:</label>
+                    <input type="number" id="min_price" name="min_price" value="{{ min_price or '' }}">
+            
+                    <label for="max_price">Max Price:</label>
+                    <input type="number" id="max_price" name="max_price" value="{{ max_price or '' }}">
+            
+                    <label for="min_beds">Min Beds:</label>
+                    <input type="number" id="min_beds" name="min_beds" value="{{ min_beds or '' }}">
+            
+                    <label for="max_beds">Max Beds:</label>
+                    <input type="number" id="max_beds" name="max_beds" value="{{ max_beds or '' }}">
+            
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
+        
+
+        </section>
+        <section id="map" class="hero-map pt-0 pb-0">
+          
+            <div class="search-properties">
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <form class="mb-0 ">
+                                <div class="form-box ">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                <div class="select--box">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <select name="select-location" id="select-location">
+                                            <option>Any Location</option>
+                                            <option>Alabama</option>
+											<option>Alaska</option>
+											<option>California</option>
+											<option>Florida</option>
+											<option>Mississippi</option>
+											<option>Oregon</option>
+                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                <div class="select--box">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <select name="select-type" id="select-type">
+                                            <option>Any Type</option>
+                                            <option>Apartment</option>
+											<option>House</option>
+											<option>Office</option>
+											<option>Villa</option>
+                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                <div class="select--box">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <select name="select-status" id="select-status">
+                                           <option>Any Status</option>
+                                            <option>For Rent</option>
+                                        	<option>For Sale</option>
+                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <input type="submit" value="Search" name="submit" class="btn btn--primary btn--block mb-30">
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3 option-hide">
+                                            <div class="form-group">
+                                                <div class="select--box">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <select name="select-beds" id="select-beds">
+                                            <option>Beds</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3 option-hide">
+                                            <div class="form-group">
+                                                <div class="select--box">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <select name="select-baths" id="select-baths">
+                                            <option>Baths</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-6 option-hide">
+                                            <div class="filter mb-30">
+                                                <p>
+                                                    <label for="amount">Price Range: </label>
+                                                    <input id="amount" type="text" class="amount" readonly>
+                                                </p>
+                                                <div class="slider-range"></div>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <a href="#" class="less--options">Less options</a>
+                                        </div>
+                                    </div>
+                                    <!-- .row end -->
+                                </div>
+                                <!-- .form-box end -->
+                            </form>
+                        </div>
+                        <!-- .col-md-12 end -->
+                    </div>
+                    <!-- .row end -->
+                </div>
+                <!-- .container end -->
+            </div>
+        </section>
+        <!-- #map end -->
+
+        <!-- properties-list
+============================================= -->
+        <section id="properties-list">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <!-- widget property type
+=============================-->
+                        <div class="widget widget-property">
+                            <div class="widget--title">
+                                <h5>Property Type</h5>
+                            </div>
+                            <div class="widget--content">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Apartments <span>(13)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Houses <span>(8)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Offices <span>(3)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Villas <span>(4)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Land <span>(2)</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- . widget property type end -->
+
+                        <!-- widget property status
+=============================-->
+                        <div class="widget widget-property">
+                            <div class="widget--title">
+                                <h5>Property Status</h5>
+                            </div>
+                            <div class="widget--content">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">For Rent <span>(25)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">For Sale <span>(32)</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- . widget property status end -->
+
+
+                        <!-- widget property city
+=============================-->
+                        <div class="widget widget-property">
+                            <div class="widget--title">
+                                <h5>Property By City</h5>
+                            </div>
+                            <div class="widget--content">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">London <span>(5)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Sydney <span>(10)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">New York <span>(4)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Paris <span>(7)</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- . widget property city end -->
+
+
+
+                    </div>
+                    <!-- .col-md-4 end -->
+                    <div class="col-xs-12 col-sm-12 col-md-8">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="properties-filter clearfix">
+                                    <div class="select--box pull-left">
+                                        <label>Sort by:</label>
+                                        <i class="fa fa-angle-up"></i>
+                                        <i class="fa fa-angle-down"></i>
+                                        <select>
+								<option selected="" value="Default">Default Sorting</option>
+								<option value="Larger">Newest Items</option>
+								<option value="Larger">oldest Items</option>
+								<option value="Larger">Hot Items</option>
+								<option value="Small">Highest Price</option>
+								<option value="Medium">Lowest Price</option>
+							</select>
+                                    </div>
+                                    <!-- .select-box -->
+                                    <div class="view--type pull-right">
+                                        <a id="switch-list" href="#" class="active"><i class="fa fa-th-list"></i></a>
+                                        <a id="switch-grid" href="#" class=""><i class="fa fa-th-large"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="properties properties-list">
+                                <!-- .col-md-12 end -->
+                                {% for property in properties %}
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <!-- .property-item #1 -->
+                                    <div class="property-item">
+                                        <div class="property--img">
+                                            <a href="">
+                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F2315968.jpg&f=1&nofb=1&ipt=0ad92c04035904947721a34bc164cd9757ba3527e329d9952c4ddd00d8558cf2&ipo=images"alt="property image" class="img-responsive" style="height: 500px;">
+								</a>
+                                            <span class="property--status">For Sale</span>
+                                        </div>
+                                        
+                                        <div class="property--content">
+                                         
+         
+       
+                                            <div class="property--info">
+                                                <h5 class="property--title"><a href="">{{ property.name }}</a></h5>
+                                                <p class="property--location">{{ property.location }}</p>
+                                                <p class="property--price">Rs.{{ property.price }}</p>
+                                            </div>
+                                            <!-- .property-info end -->
+                                            <div class="property--features">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li><span class="feature">Beds:</span><span class="feature-num">{{ property.beds }}</span></li>
+                                                    <li><span class="feature">Baths:</span><span class="feature-num">{{ property.baths }}</span></li>
+                                                    <li><span class="feature">Area:</span><span class="feature-num">{{ property.area }} sq ft</span></li>
+                                                </ul>
+                                                <button onclick="showModal('{{ property.email }}', '{{ property.contact }}')" style="font-size: 20px;background-color: aquamarine;border: none;">I'm Interested</button>
+                                                <br><br>
+                                                <form method="post" action="{{ url_for('delete', index=loop.index - 1) }}">
+                                                    <input type="submit" value="Delete" style="font-size: 20px;background-color: aquamarine;border: none;">
+                                                </form>
+                                                <form method="get" action="{{ url_for('edit', index=loop.index) }}">
+                                                    <input type="submit" value="Edit" style="font-size: 20px;background-color: aquamarine;border: none;">
+                                                </form>
+                                                <span><form method="post" action="{{ url_for('like', index=loop.index0) }}">
+                                                    <input type="submit" value="Like" style="font-size: 20px;background-color: aquamarine;border: none;">
+                                                </form></span><span style="font-size: 20px;">No.of Likes : {{ property.likes }}</span>
+                                                
+                                            </div>
+                                            
+                                           
+                                            <!-- .property-features end -->
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <style>
+                                    /* Modal styles */
+                                    .modal {
+                                        display: none; 
+                                        position: fixed; 
+                                        z-index: 1; 
+                                        left: 0;
+                                        top: 0;
+                                        width: 100%; 
+                                        height: 100%; 
+                                        overflow: auto; 
+                                        background-color: rgb(0,0,0); 
+                                        background-color: rgba(0,0,0,0.4); 
+                                        padding-top: 60px;
+                                    }
+                            
+                                    .modal-content {
+                                        background-color: #fefefe;
+                                        margin: 5% auto; 
+                                        padding: 20px;
+                                        border: 1px solid #888;
+                                        width: 80%; 
+                                    }
+                            
+                                    .close {
+                                        color: #aaa;
+                                        float: right;
+                                        font-size: 28px;
+                                        font-weight: bold;
+                                    }
+                            
+                                    .close:hover,
+                                    .close:focus {
+                                        color: black;
+                                        text-decoration: none;
+                                        cursor: pointer;
+                                    }
+                                </style>
+                                <!-- .property item end -->
+                                <!-- Modal -->
+                                <div id="interestedModal" class="modal">
+                                    <div class="modal-content">
+                                        <h1>Are You Interested in buying this property</h1>
+                                        <h4>Contact Details of the seller</h4>
+                                        <span class="close" onclick="closeModal()">&times;</span>
+                                        <p id="contactDetails" style="font-size: 25px;"></p>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function showModal(email, contact) {
+                                        document.getElementById('contactDetails').innerText = `Property Owner Name Email Address: ${email}\n\nContact Number : ${contact}`;
+                                        document.getElementById('interestedModal').style.display = 'block';
+                                    }
+
+                                    function closeModal() {
+                                        document.getElementById('interestedModal').style.display = 'none';
+                                    }
+
+                                    window.onclick = function(event) {
+                                        const modal = document.getElementById('interestedModal');
+                                        if (event.target == modal) {
+                                            modal.style.display = 'none';
+                                        }
+                                    }
+                                </script>
+                               
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-50">
+                                {% if properties %}
+                                {% if properties.has_prev %}
+                                    <a href="{{ url_for('index', page=properties.prev_num) }}">Previous</a>
+                                {% endif %}
+                                {% if properties.has_next %}
+                                    <a href="{{ url_for('index', page=properties.next_num) }}">Next</a>
+                                {% endif %}
+                            {% endif %}
+                                <!-- <ul class="pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">...</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+                            </a>
+                                    </li>
+                                </ul> -->
+                            </div>
+                            <!-- .col-md-12 end -->
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- .col-md-8 end -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container -->
+        </section>
+        <!-- #properties-list  end  -->
+
+        <!-- Footer #1
+============================================= -->
+        <footer id="footer" class="footer footer-1 bg-white">
+         
+
+            <!-- Copyrights
+	============================================= -->
+            <div class="footer--copyright text-center">
+                <div class="container">
+                    <div class="row footer--bar">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <span>© 2024 <a href="">Rentify</a>, All Rights Reserved.</span>
+                        </div>
+
+                    </div>
+                    <!-- .row end -->
+                </div>
+                <!-- .container end -->
+            </div>
+            <!-- .footer-copyright end -->
+        </footer>
+    </div>
+    <!-- #wrapper end -->
+
+    <!-- Footer Scripts
+============================================= -->
+    <script src="assets/js/jquery-2.2.4.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/functions.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyCiRALrXFl5vovX0hAkccXXBFh7zP8AOW8"></script>
+    <script src="assets/js/plugins/jquery.gmap.min.js"></script>
+    <script src="assets/js/map-addresses.js"></script>
+    <script src="assets/js/map-custom.js"></script>
+</body>
+
+</html>

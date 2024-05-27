@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Property Listing</title>
+    <style>
+         * {
+	box-sizing: border-box; 
+	margin: 0;
+	padding: 0;
+	font-family: Poppins, Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+main {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+div.row {
+	 display: flex;
+}
+
+div.row input:nth-child(2){
+	margin-left:5px;
+}
+div.form-container {
+	align-items: left;
+	width:70%;
+	border: 1px solid rgb(241, 245, 246);
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 30px;
+	padding: 1%;
+	margin-top:5%;
+}
+
+input, select {
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 1em;
+	padding: 12px 19px;
+	border: 1px solid rgb(211, 221, 225);
+	border-radius: 4px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(69, 85, 96);
+	transition: background-color 300ms ease-in-out 0s, color 300ms ease-in-out 0s;
+}
+button {
+	width:100%;
+	color: rgb(255, 255, 255);
+	background-color: rgb(1, 151, 236);
+	height: 38px;
+	padding: 0px 19px;
+	border:0;
+	border-radius: 4px;
+	line-height: 1;
+	user-select: none;
+	transition-duration: 200ms;
+	transition-property: color, background-color;
+	transition-timing-function: ease-in-out;
+}
+button:hover {
+	cursor: pointer;
+	background: #0354CE;
+}
+
+h1.title {
+  text-align: center;
+}
+h1.title span {
+  background-color: #fff;
+  padding: 15px;
+}
+h1.title::after {
+  display: block;
+  content: "";
+  border: 1px solid #ccc;
+  margin-top: -0.5em;
+	margin-bottom:2em;
+}
+
+@media only screen and (max-width: 800px)  {
+  .row {
+     flex-direction: column;
+  }
+	div.row input:nth-child(2){
+			margin-left:0px;
+	}
+}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="form-container">
+            <h1 class="title"><span>Edit Property Listing</span></h1>
+            <form method="post" action="{{ url_for('edit', index=property_index) }}">
+                <label for="name">Name of the Property:</label><br>
+                <input type="text" id="image" name="name" value="{{ property.image }}" required><br>
+                <label for="location">Location:</label><br>
+                <input type="text" id="location" name="location" value="{{ property.location }}" required><br>
+                <label for="area">Area:</label><br>
+                <input type="text" id="area" name="area" value="{{ property.area }}" required><br>
+                <label for="price">Price:</label><br>
+                <input type="text" id="price" name="price" value="{{ property.price }}" required><br>
+                <label for="age">Age:</label><br>
+                <input type="text" id="age" name="age" value="{{ property.age }}" required><br><br>
+                <label for="beds">No.of.Beds:</label><br>
+                <input type="text" id="beds" name="beds" required><br>
+                <label for="baths">No.of.Baths:</label><br>
+                <input type="text" id="baths" name="baths" required><br>
+                <label for="age">Age:</label><br>
+                <input type="text" id="age" name="age" required><br><br>
+                <label for="email">Email id:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="contact">Contact:</label><br>
+                <input type="number" id="contact" name="contact" required><br><br>
+                <input type="submit" value="Save Changes" style="background-color: aquamarine;">
+            </form>
+        </div>
+    </main>
+    <h1></h1>
+    
+</body>
+</html>

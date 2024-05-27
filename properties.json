@@ -1,0 +1,50 @@
+[
+    {
+        "name": "fun",
+        "location": "mount road",
+        "area": "685566",
+        "price": "544654",
+        "age": "656",
+        "email": "Snslrs@yahoo.in",
+        "contact": "654654654",
+        "beds": "56",
+        "baths": "6",
+        "likes": 3
+    },
+    {
+        "name": "presidio",
+        "location": "uk",
+        "area": "4565",
+        "price": "63216465",
+        "age": "564",
+        "email": "prakashramanathan1211@gmail.com",
+        "contact": "5454564",
+        "beds": "6",
+        "baths": "4566",
+        "likes": 0
+    },
+    {
+        "name": "roughit",
+        "location": "Chitlapakkam",
+        "area": "100",
+        "price": "10000",
+        "age": "1",
+        "email": "prakashramanathan1211@gmail.com",
+        "contact": "5454564",
+        "beds": "10",
+        "baths": "10",
+        "likes": 0
+    },
+    {
+        "name": "yogashini",
+        "location": "Chitlapakkam",
+        "area": "100",
+        "price": "45645656",
+        "age": "1",
+        "email": "prakashramanathan1211@gmail.com",
+        "contact": "5454564",
+        "beds": "10",
+        "baths": "10",
+        "likes": 0
+    }
+]
